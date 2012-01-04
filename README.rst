@@ -43,7 +43,7 @@ To load a snapshot as a PIL object, use StringIO module::
     img = Image.open(StringIO(data))
     img.save('snapshot.jpg')
 
-To use streaming, define callback and call 'stream' method.
+To use streaming, define callback and call 'stream' method::
 
     count = 0
     
