@@ -11,6 +11,7 @@
 
 from urllib import urlencode
 from urllib2 import urlopen
+from time import sleep
 
 
 class WifiCamera(object):
@@ -96,6 +97,20 @@ class WifiCamera(object):
     def snapshot(self):
         return self._get({'action': 'snapshot'})
 
+    def stream(self, on_data, is_continued=None, interval=0):
+        if not is_continued:
+            is_continued = lambda: True  # forever
+        r = self._open({'action': 'stream'})
+        count = 0
+        while is_continued():
+            line = r.readline()
+            if 'Content-Length' in line:
+                count = int(line.split(':')[1].strip())
+            if count and len(line.strip()) == 0:
+                on_data(r.read(count))
+                count = 0
+                sleep(interval)
+
     def _set_resolution(self, _resolution):
         resolution = _resolution.upper()
         if resolution not in self.RESOLUTION:
@@ -166,12 +181,15 @@ class WifiCamera(object):
         return self._get({'action': 'command', 'command': command})
 
     def _get(self, params):
+        return self._open(params).read()
+
+    def _open(self, params):
         try:
-            f = urlopen('?'.join([self.url_root, urlencode(params)]),
+            r = urlopen('?'.join([self.url_root, urlencode(params)]),
                         timeout=self.timeout)
         except IOError:
             raise WifiCameraError("device is not found.")
-        return f.read()
+        return r
 
     def _export_value(self, line):
         return int(line.split(':')[1].strip())
