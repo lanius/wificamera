@@ -2,15 +2,30 @@
 
 from setuptools import setup, find_packages
 
-description = ("WifiCamera is a Python module ",
-               "for controlling the network camera CS-W07G-CY.")
+
+with open('README.rst') as stream:
+    long_description = stream.read()
+
+description = """WifiCamera is a Python module \
+for controlling the network camera CS-W07G-CY."""
 
 setup(
     name='wificamera',
-    version='0.1.0',
-    packages=find_packages(),
-    description=description,
+    version='0.1',
+    url='https://github.com/lanius/wificamera/',
+    license='MIT',
     author='lanius',
     author_email='lanius@nirvake.org',
-    license="MIT License",
+    description=description,
+    long_description=long_description,
+    packages=find_packages(),
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Topic :: Multimedia :: Graphics :: Capture',
+        'Topic :: Software Development :: Libraries :: Python Modules'
+    ]
 )

@@ -1,7 +1,3 @@
-﻿==========
-WifiCamera
-==========
-
 What is this?
 =============
 WifiCamera is a Python module for controlling the network camera CS-W07G-CY. About the device, see http://www.planex.co.jp/product/camera/cs-w07g-cy/.
@@ -11,7 +7,7 @@ Getting started
 ===============
 WifiCamera can be installed with pip or easy_install from github::
 
-    pip install https://github.com/lanius/wificamera/zipball/master
+    pip install wificamera
 
 Create WifiCamera object, and you can take and save a snapshot::
 
