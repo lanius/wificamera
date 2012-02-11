@@ -3,8 +3,8 @@
 from setuptools import setup, find_packages
 
 
-with open('README.rst') as stream:
-    long_description = stream.read()
+with open('README.rst') as f:
+    long_description = f.read()
 
 description = """WifiCamera is a Python module \
 for controlling the network camera CS-W07G-CY."""
