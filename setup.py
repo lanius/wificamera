@@ -11,7 +11,7 @@ for controlling the network camera CS-W07G-CY."""
 
 setup(
     name='wificamera',
-    version='0.1',
+    version='0.1.1',
     url='https://github.com/lanius/wificamera/',
     license='MIT',
     author='lanius',
